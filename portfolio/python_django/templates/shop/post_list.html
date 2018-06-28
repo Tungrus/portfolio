@@ -1,0 +1,44 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-sm-3 col-md-2 hidden-xss-down bg-faded sidebar">
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item"> <a class="nav-link active" href="{% url 'list' %}">All</a></li>
+                <li class="nav-item"> <a class="nav-link active" href="{% url 'list' %}?category=Engines">Engines</a></li>
+                <li class="nav-item"> <a class="nav-link active"
+                                        href="{% url 'list' %}?category=Transmition">Transmition</a></li>
+                <li class="nav-item"> <a class="nav-link active" href="{% url 'list' %}?category=Wheels">Wheels</a></li>
+                <li class="nav-item"> <a class="nav-link active"
+                                        href="{% url 'list' %}?category=Accessories">Accessories</a></li>
+                <li class="nav-item"><a a class="nav-link active" href="/shop/newPost/">Добавить товар</a></li>
+            </ul>
+        </nav>
+        {% load static %}
+
+        <main class="col-sm-9 ">
+            {% for post_group in posts %}
+            <div class="card-group">
+                {% for post in post_group %}
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{ post.image.url }}">
+                    <div class="card-header">
+                        <h4> Category: {{ post.category }}</h4>
+                        <h4><a href="{{ post.get_url }}"> {{ post.title }}</a></h4>
+                    </div>
+                    <div class="card-body"><h4>Price: {{ post.price }} RUB</h4></div>
+                    <p> Posted: {{ post.datetime }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            {% empty %}
+            <div class="card" style="width: 18rem;">
+                <p>Нет постов</p>
+            </div>
+            {% endfor%}
+        </main>
+    </div>
+</div>
+
+{% endblock %}

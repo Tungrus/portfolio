@@ -1,0 +1,19 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <a href="{% url 'basket_confirm' %}?is_confirm=yes"> Подтвердить покупки </a>
+    <a href="{% url 'basket_confirm' %}?is_confirm=no"> Отменить покупки </a>
+    {% for product in basket %}
+        <div class="card">
+            <div class="card-header">title:{{ product.post.title }}</div>
+            <div class="card-body">
+                <p class="card-text">price:{{ product.post.price }} </p>
+            </div>
+        </div>
+    {% empty %}
+        <p>нет заказов</p>
+    {% endfor %}
+    <t3>TOTAL PRICE:{{ total_price }} RUB</t3>
+</div>
+{% endblock %}

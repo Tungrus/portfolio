@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <style >
+        #additional_information {
+         width: 300px;
+         height: 100px;
+    </style>
+</head>
+<body>
+<form action="task1_reg_finish.html" method="post">
+    <div>
+        <hr>
+
+        <label for="name"><h3>Имя</h3></label>
+        <input type="text" id="name" name="name" maxlength="255" maxlength="255" required>
+
+        <label for="family"><h3>Фамилия</h3></label>
+        <input type="text" id="family" name="family" maxlength="255" required>
+
+        <label for="email"><h3>Почта</h3></label>
+        <input type="email" id="email" name="email" maxlength="255" required>
+
+        <hr> <!-- TODO fix width, contain in div box-->
+        <h3>Курсы:</h3>
+        <lable><input type="radio" value="Drupal_7" name="course" required> Drupal 7 </lable>
+
+
+        <lable><input type="radio" value="Drupal_8" name="course" required> Drupal 8 </lable>
+
+        <hr>
+
+        <lable for="additional_information"><h3></h3></lable>
+        <input type="text" name="additional_information" id="additional_information" maxlength="1024" required><br><br>
+
+        <input type="submit" value="Отправить">
+        <input type="reset" value="Очистить">
+    </div>
+</form>
+</body>
+</html>

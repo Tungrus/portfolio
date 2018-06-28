@@ -1,0 +1,3 @@
+this is simple project contains two parts: 
+	1) my_fuzzy_strcmp - litle lib witch realise fuzzy search in strings.
+	2) simple translator on winapi.

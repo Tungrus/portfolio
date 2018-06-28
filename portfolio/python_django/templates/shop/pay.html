@@ -1,0 +1,29 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+<div class="container">
+    <t3>Яндекс Кошелек - 0.0005</t3>
+    <t3>Банковская карта - 0.002</t3>
+    <t3>Баланс мобильного - уточняйте у мобильного опретаора</t3>
+
+    <form action="https://money.yandex.ru/quickpay/confirm.xml" method="POST">
+        {% csrf_token %}
+        <label for="receiver"> Reciver id </label>
+        <input id="receiver" type="number" name="receiver" required>
+
+        <label for="targets"> Targets </label>
+        <input id="targets" type="input" name="targets" required maxlength="150">
+
+        <select id="category" name="category">
+            <option value="PC">Яндекс Кошелек</option>
+            <option value="AC">Банковская карта</option>
+            <option value="MC">Баланс мобильного</option>
+        </select>
+
+        <input type="hidden" id="quickpay-form" name="quickpay-form" value="shop">
+        <label for="sum"> Сумма к зачислению </label>
+        <input id="sum" type="combobox" name="sum" value="{{total_price}}" required disabled>
+
+        <button type="submit">Отправить</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,5 @@
+All this exercise from the university. this is the old code written in a few days.
+C_LAB_1 -- simple hash map.
+C_LAB_2_2 -- simple math calculator.
+C_LAB_3 -- calculator of derivatives(not all math operations included).
+

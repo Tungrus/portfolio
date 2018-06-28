@@ -1,0 +1,60 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+<div class="container">
+    <div class="card">
+
+        <h2 class="card-header">{{ post.title }}</h2>
+        <div class="card-body">
+            <img class="card-img-top" src="{{ post.image.url }}">
+            <p class="card-text">{{ post.content }}</p>
+            <p class="card-text">Price: {{ post.price }}</p>
+            {% if user.is_authenticated %}
+            <form method="post" action="{% url 'add_product_to_basket' post.id %}">
+                {% csrf_token %}
+                <input type="submit" value="Купить">
+            </form>
+            {% endif %}
+        </div>
+        <div class="card-footer text-muted">
+            Posted: {{ post.datetime }}
+            Mark: {{ total_vote }}
+        </div>
+    </div>
+    {% if user.is_authenticated %}
+    <form action="{% url 'add-vote-to-post' post.id %}" method="post">
+        {% csrf_token %}
+        <lablel for="mark">please evaluate the goods</lablel>
+        <select id="mark" name="mark">
+            {% for mark in marks %}
+            <option value="{{ mark }}"> {{ mark }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Оценить">
+    </form>
+    {% endif %}
+</div>
+<div class="container">
+    {% if user.is_authenticated %}
+    <form action="{% url 'comment-send' post.id %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="context"> Текст комментария</label>
+            <input id="context" type="text" name="context" class="form-control">
+            <input type="submit" value="submit">
+        </div>
+    </form>
+    {% else %}
+    <p>you need to be login to post comments</p>
+    {% endif %}
+    {% for comment in post.get_comments %}
+    <div class="card">
+        <div class="card-header">Posted: {{ comment.user }}</div>
+        <div class="card-body">
+            <p class="card-text">{{ comment.context }} </p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

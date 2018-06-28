@@ -1,0 +1,39 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+<div class="container">
+    <form action="{% url 'post-add' %}" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col">
+                    <lablel for="category">Category</lablel>
+                    <select id="category" name="category" class="form-control">
+                        {% for category in categories %}
+                        <option value="{{ category }}"> {{ category }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <label for="title"> Title </label>
+                <input id="title" type="text" name="title" required class="form-control">
+            </div>
+            <div class="row">
+                <label for="context"> Context </label>
+                <input id="context" type="text" name="context" required class="form-control">
+            </div>
+            <div class="row">
+                <label for="image"> Image </label>
+                <input id="image" type="file" name="image" class="form-control-file" required>
+            </div>
+            <div class="row">
+                <label for="price"> Price </label>
+                <input id="price" type="number" name="price" required class="form-control">
+            </div>
+            <div class="row">
+                <input type="submit" value="submit">
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
